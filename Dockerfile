@@ -1,5 +1,5 @@
 # Stage 1: Build
-FROM ubuntu:latest AS builder
+FROM ubuntu:24.04 AS builder
 
 # Install necessary build tools and dependencies
 RUN apt-get update && \
@@ -19,7 +19,7 @@ RUN mkdir /install && \
     make install
 
 # Stage 2: Runtime
-FROM ubuntu:latest
+FROM ubuntu:24.04
 
 # Copy installed files from builder stage
 COPY --from=builder /usr/bin/wg-obfuscator /usr/bin/wg-obfuscator
